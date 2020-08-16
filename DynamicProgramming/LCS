@@ -1,3 +1,4 @@
+*LCS*
 int lcs( char *X, char *Y, int m, int n )  
 {  
     int L[m + 1][n + 1];  
@@ -20,3 +21,21 @@ int lcs( char *X, char *Y, int m, int n )
     }  
     return L[m][n];  
 }  
+*LIS*
+int lis( int arr[], int n )  
+{  
+    int lis[n]; 
+   
+    lis[0] = 1;    
+  
+ 
+    for (int i = 1; i < n; i++ )  
+    { 
+        lis[i] = 1; 
+        for (int j = 0; j < i; j++ )   
+            if ( arr[i] > arr[j] && lis[i] < lis[j] + 1)  
+                lis[i] = lis[j] + 1;  
+    }  
+    return *max_element(lis, lis+n); 
+}  
+ 
