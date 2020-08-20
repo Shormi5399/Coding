@@ -27,6 +27,44 @@ for(int i=0;i<A.size();i++){
 return ans;
 }
 
+////////////////////////no of island(leetcode)///////////////////////////////
+
+
+    int numIslands(vector<vector<char>>& grid) {
+        if(grid.size()==0||grid[0].size()==0){
+            return 0;
+        }
+        int cnt=0;
+        int n=grid.size();
+        int m=grid[0].size();
+        int a[4]={0,0,-1,1};
+        int b[4]={1,-1,0,0};
+        vector<vector<bool>>s(n,vector<bool>(m,false));
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='1'&&!s[i][j]){
+                    cnt++;
+                    queue<pair<int,int>>q;
+                    q.push({i,j});
+                    while(!q.empty()){
+                            auto x1=q.front();
+                            int x=x1.first;
+                            int y=x1.second;
+                            s[x][y]=true;
+                            for(int t=0;t<4;t++){
+                                if(x+a[t]>=0&&x+a[t]<n&&y+b[t]>=0&&y+b[t]<m&&!s[x+a[t]][y+b[t]]&&grid[x+a[t]][y+b[t]]=='1'){
+                                    q.push({x+a[t],y+b[t]});
+                                    s[x+a[t]][y+b[t]]=true;
+                                }
+                            }
+                            q.pop();
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+
 
 /////////////////////////no of  island//////////////////////////////////////////
 
